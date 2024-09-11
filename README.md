@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🔎 Threat Analysis 🔍
+# :microscope: Threat Analysis :microscope:
 Threat analyses I have done involving phishing, malware, social engineering, etc.
 
 ## DISCLAIMER
