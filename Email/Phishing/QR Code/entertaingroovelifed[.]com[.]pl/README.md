@@ -1,0 +1,80 @@
+<div align="center">
+  
+# :fishing_pole_and_fish: entertaingroovelifed[.]com[.]pl :fishing_pole_and_fish:
+
+## :page_facing_up: Summary :page_facing_up:
+
+<div align="left">
+  
+Attacker is attempting to obtain Office 365 credentials for further exploitation. To avoid email security, the attacker utilizes evasion techniques such as QR codes, CAPTCHA, and geoblocking.
+
+<div align="center">
+
+## :mag_right: Indicators of Compromise :mag:
+
+| Type | Value |
+| --- | --- |
+| Domain | banhtrangutbinh[.]com |
+| Domain | entertaingroovelifed[.]com[.]pl |
+| Domain | urbantechentertainmentfe[.]ru |
+| IP | 191[.]101[.]80[.]248 |
+
+## :checkered_flag: Attack Progression :racing_car:
+
+<div align="left">
+  
+1) Attacker compromises a legitimate 3rd-party vendor of the target's company.
+2) Attacker crafts email to be sent to the target. The attacker uses a QR code to prevent the scanning and rewriting of the URL by any email security services used by the target's company.
+3) Attacker sends emails to targets in alphabetical order.
+4) Target receives email and scans the QR code with their phone, which is most likely not protected by the company's security software such as web proxies or AV.
+5) QR code is for the following site: _hxxps[://]banhtrangutbinh[.]com/image/catalog/vqmod/arull[.]php?7120797967704b536932307464507a53744a4c53704a7a4d784c4c3872504c30764e7955784c5464464c7a732f564b386a524c3357717a4376564277413d_
+6) The site checks the geolocation of the target's IP address. If the target is not in the United States, the site fails to load. If the target's IP is in the United States, the attack proceeds to the next step.
+> Based on later connections and previous similar attacks utilizing the same fake webpage, this appears to be a mistake by the attacker. It appears the attacker meant for the non-United States connections to go to _hxxps[://]urbantechentertainmentfe[.]ru/514[.]php_, which is a fake car website with only one page. The attacker's hope appears to be to avoid detection for a longer period of time, so that non-US targets would not flag the emails as malicious, causing security tools to block the sender and URLs. However, not much effort was put into this front since the redirect is broken and none of the links on the home page take you anywhere other than the home page. In addition, the site is not related to the original request of the email, which would probably have caused suspicion if the site had been working properly.
+
+![urbantechentertainmentfe_ru](https://github.com/user-attachments/assets/f46de7f5-4280-4dc8-b9da-1e15dc22ad5c)
+
+7) The target is redirected to _hxxps[://]entertaingroovelifed[.]com[.]pl/uBynu/#5_.
+8) Target is required to perform a CloudFlare CAPTCHA.
+> CAPTCHA, especially CloudFlare's CAPTCHA, have been observed by the researcher for most phishing attacks because of their protection against automated scanners such as VirusTotal and URLScan.io.
+
+![entertaingroovelifed_com_pl (CAPTCHA)](https://github.com/user-attachments/assets/2699f7f9-3444-4406-95a1-9661792d5a54)
+
+9) Target is brought to a fake Office 365 login page.
+> None of the other buttons on this page work if clicked.
+
+![entertaingroovelifed_com_pl (Login) 01](https://github.com/user-attachments/assets/77156d15-61be-4402-a66a-f9ea6e984933)
+
+10) Target types in their email, and then is requested to enter their password on the same page.
+> The site does not check to see if the email is correct before proceeding to the password, nor does it reload the page to look like the target's SSO login page if an SSO is used at the target's company. It also has 2 broken words (ie. _proceed_ and _verification_) which will cause suspicion.
+
+![entertaingroovelifed_com_pl (Login) 02](https://github.com/user-attachments/assets/728f439c-fe2c-45c5-8a6a-290112e70948)
+
+11) The site checks the target's credentials by attempting to login to their account from _191[.]101[.]80[.]248_.
+
+![entertaingroovelifed_com_pl (Login) 03](https://github.com/user-attachments/assets/a91f9533-2692-4b69-b17f-c212ecc31a84)
+
+13) If the attacker is able to gain access, the attack would progress from here, and most likely end in the attacker attacking new targets using the same methods once they have achieved their goal(s) inside the target's account/company.
+
+<div align="center">
+
+## :bulb: OSINT Insights :bulb:
+
+<div align="left">
+  
+1) According to [IP2Proxy](https://www.ip2proxy.com/), _191[.]101[.]80[.]248_ is a data center out of the UK hosted with Hostinger International Limited.
+
+![IP2Proxy (191_101_80_248) 01](https://github.com/user-attachments/assets/c013a878-5776-4ad3-8a3b-b3bfe8e678db)
+
+![IP2Proxy (191_101_80_248) 02](https://github.com/user-attachments/assets/0279be96-566b-4fe7-aee3-acaaf3b28555)
+
+2) A reverse IP lookup using [SecurityTrails](https://securitytrails.com/list/ip/191.101.80.248) shows 2 subdomains using this IP address: _0x1[.]star0x1[.]com_ and _bot[.]star0x1[.]com_
+
+> For data centers, multiple domains with no relation may use the same IP address for their DNS A record (ex. AWS). However, this IP has only 2 subdomains which are related, most likely indicating that the attacker is the only one utilizing this IP address and the subsequent subdomains.
+
+![SecurityTrails (191_101_80_248) 01](https://github.com/user-attachments/assets/88f4e542-3092-4158-a34e-751f8e5f1107)
+
+3) Historical data for these subdomains show the previous use of _93[.]188[.]167[.]158_ about a month ago.
+
+![SecurityTrails (0x1_star0x1_com) 01](https://github.com/user-attachments/assets/dffad5fb-1b7b-4d05-897f-2a68874a8cce)
+
+![SecurityTrails (bot_star0x1_com) 01](https://github.com/user-attachments/assets/16c552d9-4b72-49e4-aac8-d18e268bc0f7)
