@@ -25,6 +25,9 @@ Attacker is attempting to obtain Office 365 credentials for further exploitation
   
 1) Attacker compromises a legitimate 3rd-party vendor of the target's company.
 2) Attacker crafts email to be sent to the target. The attacker uses a QR code to prevent the scanning and rewriting of the URL by any email security services used by the target's company.
+
+![entertaingroovelifed_com_pl (Email)](https://github.com/user-attachments/assets/873a233b-6365-476f-9cea-3a5c59ac5814)
+
 3) Attacker sends emails to targets in alphabetical order.
 4) Target receives email and scans the QR code with their phone, which is most likely not protected by the company's security software such as web proxies or AV.
 5) QR code is for the following site: _hxxps[://]banhtrangutbinh[.]com/image/catalog/vqmod/arull[.]php?7120797967704b536932307464507a53744a4c53704a7a4d784c4c3872504c30764e7955784c5464464c7a732f564b386a524c3357717a4376564277413d_
@@ -40,7 +43,7 @@ Attacker is attempting to obtain Office 365 credentials for further exploitation
 ![entertaingroovelifed_com_pl (CAPTCHA)](https://github.com/user-attachments/assets/2699f7f9-3444-4406-95a1-9661792d5a54)
 
 9) Target is brought to a fake Office 365 login page.
-> None of the other buttons on this page work if clicked.
+> None of the other buttons on this page work if clicked. Also, the SharePoint logo and background are not shown when logging into a legitimate SharePoint site.
 
 ![entertaingroovelifed_com_pl (Login) 01](https://github.com/user-attachments/assets/77156d15-61be-4402-a66a-f9ea6e984933)
 
@@ -49,11 +52,12 @@ Attacker is attempting to obtain Office 365 credentials for further exploitation
 
 ![entertaingroovelifed_com_pl (Login) 02](https://github.com/user-attachments/assets/728f439c-fe2c-45c5-8a6a-290112e70948)
 
-11) The site checks the target's credentials by attempting to login to their account from _191[.]101[.]80[.]248_.
+11) The site checks the target's credentials by attempting to login to their account from _191[.]101[.]80[.]248_ using the following user agent: _Mozilla/5.0 (Windows NT 10.0; Win64; x64; WebView/3.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.22621_
+> According to [User-Agents.net](https://user-agents.net/string/mozilla-5-0-windows-nt-10-0-win64-x64-webview-3-0-applewebkit-537-36-khtml-like-gecko-chrome-70-0-3538-102-safari-537-36-edge-18-19044), this is a Windows 10 device using Microsoft Edge. I wasn't able to find a specific release date for this version of Edge, but the Chrome version listed was released on November 9, 2018, so it appears the attacker is running a version of Windows 10 from around this time.
 
 ![entertaingroovelifed_com_pl (Login) 03](https://github.com/user-attachments/assets/a91f9533-2692-4b69-b17f-c212ecc31a84)
 
-13) If the attacker is able to gain access, the attack would progress from here, and most likely end in the attacker attacking new targets using the same methods once they have achieved their goal(s) inside the target's account/company.
+12) If the attacker is able to gain access, the attack would progress from here, and most likely end in the attacker attacking new targets using the same methods once they have achieved their goal(s) inside the target's account/company.
 
 <div align="center">
 
