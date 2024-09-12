@@ -32,13 +32,13 @@ Attacker is attempting to obtain Office 365 credentials for further exploitation
 4) Target receives email and scans the QR code with their phone, which is most likely not protected by the company's security software such as web proxies or AV.
 5) QR code is for the following site: _hxxps[://]banhtrangutbinh[.]com/image/catalog/vqmod/arull[.]php?7120797967704b536932307464507a53744a4c53704a7a4d784c4c3872504c30764e7955784c5464464c7a732f564b386a524c3357717a4376564277413d_
 6) The site checks the geolocation of the target's IP address. If the target is not in the United States, the site fails to load. If the target's IP is in the United States, the attack proceeds to the next step.
-> Based on later connections and previous similar attacks utilizing the same fake webpage, this appears to be a mistake by the attacker. It appears the attacker meant for the non-United States connections to go to _hxxps[://]urbantechentertainmentfe[.]ru/514[.]php_, which is a fake car website with only one page. The attacker's hope appears to be to avoid detection for a longer period of time, so that non-US targets would not flag the emails as malicious, causing security tools to block the sender and URLs. However, not much effort was put into this front since the redirect is broken and none of the links on the home page take you anywhere other than the home page. In addition, the site is not related to the original request of the email, which would probably have caused suspicion if the site had been working properly.
+> Based on later connections and previous similar attacks utilizing the same fake webpage, this appears to be a mistake by the attacker ([Triage scan of a previous attack with the same webpage](https://tria.ge/240812-yzgbwsxglm/behavioral1); Triage scans from the EU normally, but offer a private US based service if desired). It appears the attacker meant for the non-United States connections to go to _hxxps[://]urbantechentertainmentfe[.]ru/514[.]php_, which is a fake car website with only one page. The attacker's hope appears to be to avoid detection for a longer period of time, so that non-US targets would not flag the emails as malicious, causing security tools to block the sender and URLs. However, not much effort was put into this front since the redirect is broken and none of the links on the home page take you anywhere other than the home page. In addition, the site is not related to the original request of the email, which would probably have caused suspicion if the site had been working properly.
 
 ![urbantechentertainmentfe_ru](https://github.com/user-attachments/assets/f46de7f5-4280-4dc8-b9da-1e15dc22ad5c)
 
 7) The target is redirected to _hxxps[://]entertaingroovelifed[.]com[.]pl/uBynu/#5_.
 8) Target is required to perform a CloudFlare CAPTCHA.
-> CAPTCHA, especially CloudFlare's CAPTCHA, have been observed by the researcher for most phishing attacks because of their protection against automated scanners such as VirusTotal and URLScan.io.
+> CAPTCHA, especially CloudFlare's CAPTCHA, have been observed by myself for most phishing attacks because of their protection against automated scanners such as VirusTotal and URLScan.io.
 
 ![entertaingroovelifed_com_pl (CAPTCHA)](https://github.com/user-attachments/assets/2699f7f9-3444-4406-95a1-9661792d5a54)
 
@@ -77,8 +77,9 @@ Attacker is attempting to obtain Office 365 credentials for further exploitation
 
 ![SecurityTrails (191_101_80_248) 01](https://github.com/user-attachments/assets/88f4e542-3092-4158-a34e-751f8e5f1107)
 
-3) Historical data for these subdomains show the previous use of _93[.]188[.]167[.]158_ about a month ago.
+3) Although this IP and these particular subdomains are not on [Shodan](https://www.shodan.io/), the domain _star0x1[.]com_ is used as part of the hostname for a server at _103[.]113[.]71[.]207_, which belongs to Stark Industries Solutions. The servers hostname according to its response on port 25 is _WIN-344VU98D3RU[.]star0x1[.]com_.
 
-![SecurityTrails (0x1_star0x1_com) 01](https://github.com/user-attachments/assets/dffad5fb-1b7b-4d05-897f-2a68874a8cce)
+> Brian Krebs put out a great report on Stark Industries Solutions in May 2024, which can be viewed on his website [here](https://krebsonsecurity.com/2024/05/stark-industries-solutions-an-iron-hammer-in-the-cloud/).
 
-![SecurityTrails (bot_star0x1_com) 01](https://github.com/user-attachments/assets/16c552d9-4b72-49e4-aac8-d18e268bc0f7)
+![Shodan (103_113_71_207) 01](https://github.com/user-attachments/assets/33cba348-c69f-4fea-befb-af61cf7021c4)
+![Shodan (103_113_71_207) 02](https://github.com/user-attachments/assets/aadfc244-a76b-4ea9-81c7-82b9f3affa95)
