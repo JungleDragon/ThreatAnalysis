@@ -18,6 +18,9 @@ Attacker is attempting to obtain Office 365 credentials for further exploitation
 | Domain | entertaingroovelifed[.]com[.]pl |
 | Domain | urbantechentertainmentfe[.]ru |
 | IP | 191[.]101[.]80[.]248 |
+| URL | hxxps[://]banhtrangutbinh[.]com/image/catalog/vqmod/arull[.]php?7120797967704b536932307464507a53744a4c53704a7a4d784c4c3872504c30764e7955784c5464464c7a732f564b386a524c3357717a4376564277413d |
+| URL | hxxps[://]entertaingroovelifed[.]com[.]pl/uBynu/#5 |
+| URL | hxxps[://]urbantechentertainmentfe[.]ru/514[.]php |
 
 ## :checkered_flag: Attack Progression :racing_car:
 
